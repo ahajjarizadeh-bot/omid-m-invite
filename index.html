@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بله یا خیر تست؟</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <!-- baray tarigh -->
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css" />
+
+
+    <!-- 😎😁😞😐😌😇😉😍🥰😘😋😛😝😒🙂‍↔️😞😢😠😡🫠 -->
+</head>
+
+
+
+<!-- step1 -->
+
+<body>
+    <div id="step1" class="step">
+        <div class="container">
+            <h1 id="mainTitle">آیا دوست داری باهم بریم بیرون؟؟ 💕</h1>
+            <div class="buttons">
+                <button id="yesBtn">بله 😍</button>
+                <button id="noBtn">خیر 🙄</button>
+                <!-- <button id="nextBtn">بعدی 😉</button>                       remove nexbtn                        -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- step2 -->
+
+
+    <!-- ببین دو تا کلاس برای استپ 1 و 2 پیاده سازی کردیم که با این کار وقی کاربر روی بعدی زد یکی رو ریموو کنمی و دیگری را اد -->
+    <div id="step2" class="HiddenStep">
+        <h1></h1>
+        <h1> میدونستم میای 😁<br>خب حالا بگو کجا بریم </h1>
+        <div class="buttons-container options-grid">
+            <button id="Place1" class="Next-btn-option" data-value="کافه">کافه دنج ☕</button>
+            <button id="Place4" class="Next-btn-option">پیاده‌روی و بستنی 🍦</button>
+            <button id="Place3" class="Next-btn-option" data-value="سینما">سینما 🎬</button>
+            
+        </div>
+    </div>
+
+
+    <!-- step3 -->
+
+    <div id="step3" class="HiddenStep">
+        <h1>حالا بگو کی بریم</h1>
+        <input id="date-input" type="text" style="background-color:  #a31eaa; border: #4d1550;border-radius: 10px; ">
+        <button id="submit-date">تایید تاریخ</button>
+    </div>
+
+
+    <!-- step4 -->
+
+    <div id="step4" class="HiddenStep">
+        <!-- یک تگ خالی با یک ID مشخص برای اینکه جاوااسکریپت بتواند آن را پیدا کند -->
+        <p id="confirmation-message"></p>
+
+    </div>
+
+
+
+    <!-- <p class="HiddenStep" id="s22">befrest acso</p> -->
+
+
+    <style>
+        body {
+            font-family: Vazirmatn, Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            /* background: linear-gradient(135deg, #720202, #20033d); */
+            overflow: hidden;
+
+            /* background: linear-gradient(135deg, #930e9a, #1d0202); */
+            /* background: linear-gradient(135deg, #533d54, #000000); */
+            background: radial-gradient(circle at center, #2f013a 0%, #23012c 60%, #1b0022 90%);
+
+
+
+        }
+
+        .container {
+            text-align: center;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #772b7c;
+            margin-bottom: 40px;
+            text-shadow: 2px 8px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            font-size: 1.5rem;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #yesBtn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        #noBtn {
+            background: #f44336;
+            color: white;
+            position: relative;
+
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.05);
+        }
+
+        #nextBtn {
+            background: linear-gradient(45deg, #380d45, #710a51);
+        }
+
+        .HiddenStep {
+            display: none !important;
+        }
+
+
+        .Next-btn-option {
+            color: rgb(26, 1, 27);
+            background: linear-gradient(#380d45, #710a51);
+
+        }
+
+        #submit-date {
+            background: linear-gradient(#380d45, #710a51);
+            font-size: 1rem;
+
+
+        }
+
+        #date-input {
+            background: linear-gradient(#380d45, #710a51);
+            border: #4d1550;
+            border-radius: 10px;
+        }
+
+        .message-box {
+            background: linear-gradient(#380d45, #710a51);
+            color: #28032b;
+            border-radius: 90px;
+            font-size: 40px;
+            padding: 20px;
+            /* margin: 5px; */
+
+        }
+
+        #s22 {
+            color: rgb(55, 12, 74);
+            margin-top: auto;
+        }
+    </style>
+ 
+
+    <!-- /* ********** js *********** */ -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>
+    <script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#date-input").persianDatepicker({
+                format: 'MM/DD', // فرمت تاریخ به صورت شمسی
+                autoClose: true // بعد از انتخاب تاریخ، تقویم خودکار بسته بشه
+            });
+        });
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        // const nextBtn = document.getElementById('nextBtn');                                         remove nexbtn
+        const AcceptPlace = document.querySelectorAll('.Next-btn-option');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+        const step4 = document.getElementById('step4');
+        // nextBtn.style.display = 'none'
+        const mainTitle = document.getElementById('mainTitle');
+        const messages = [
+            "واقعا نمیای؟؟ 🥺",
+            "بیا دیگه، خیلی خوش می‌گذره! ✨",
+            "دوباره فکر کن! 🤔",
+            "داری اشتباه می‌کنی! 🧐",
+            "قلبم شکست... 💔",
+        ];
+        let msgIndex = 0;
+        let clickCount = 0;
+        let currentSize = 1;
+        // yesBtn.addEventListener('click', showLove);
+        noBtn.addEventListener('click', function () {
+            clickCount++;
+            if (clickCount >= 6) {
+                noBtn.style.display = 'none';
+                mainTitle.innerText = "یا میای یا میای😁";
+                return;
+            }
+            let newSize = Math.max(0.2, 1.5 - (clickCount * 0.3));
+            noBtn.style.fontSize = newSize + 'rem';
+            let paddingV = Math.max(0.5, 15 - (clickCount * 4));
+            let paddingH = Math.max(1, 40 - (clickCount * 10));
+            noBtn.style.padding = paddingV + 'px ' + paddingH + 'px';
+            mainTitle.innerText = messages[msgIndex % messages.length];
+            msgIndex++;
+        });
+        // function showLove() {
+        //     mainTitle.innerText = 'میدونستم درخواستمو رد نمیکنی 😍🎉';
+        //     noBtn.style.display = 'none';
+        //     yesBtn.style.display = 'none';
+        //     nextBtn.style.display = 'block';
+        // }
+        yesBtn.addEventListener('click', nextpage)
+        function nextpage() {
+            step1.classList.add('HiddenStep');
+            step2.classList.remove('HiddenStep');
+        }
+
+        let SelectPlace = "";
+        AcceptPlace.forEach(button => {
+            button.addEventListener('click', function () {
+                SelectPlace = this.getAttribute('data-value');
+                nextpage2();
+            });
+        });
+
+
+        function nextpage2() {
+            step2.classList.add('HiddenStep');
+            step3.classList.remove('HiddenStep');
+        }
+
+        document.getElementById('submit-date').addEventListener('click', function () {
+
+            step3.classList.add('HiddenStep');
+            step4.classList.remove('HiddenStep');
+            const selectedDate = document.getElementById('date-input').value;
+            const messageElement = document.getElementById('confirmation-message');
+            messageElement.innerText = " پس " + selectedDate + " میبینمت! 😍💕👋";
+            messageElement.classList.add('message-box')
+            s22.classList.remove('HiddenStep');
+        }
+        );
+
+    </script>
+</body>
+
+</html>
